@@ -17,11 +17,11 @@ KERNEL_OFFSET equ 0x1000; memory offset to which we will load kernel
     jmp $    ; will not be executed
 
 
-%include "../05-bootsector-disk/print_string.asm"
-%include "../07-bootsector-gdt/pm-switch.asm"
-%include "../05-bootsector-disk/disk.asm"
-%include "../06-bootsector-32bit-print/print_pm.asm"
-%include "../07-bootsector-gdt/gdt.asm"
+%include "../16bit/print_string.asm"
+%include "../16bit/pm-switch.asm"
+%include "../16bit/disk.asm"
+%include "../16bit/print_pm.asm"
+%include "../16bit/gdt.asm"
 
 [bits 16]
 load_kernel:
@@ -39,11 +39,9 @@ load_kernel:
 [bits 32]
 BEGIN_PM:
     mov ebx, MSG_PROT_MODE ; Use of 32-bit protected mode print to show that we are in protected mode
-
     call print_string_pm
 
     call KERNEL_OFFSET
-
     jmp $
 
 BOOT_DRIVE db 0
