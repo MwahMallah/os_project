@@ -1,0 +1,1 @@
+For compliation we need to have cross-compiler (further reading: https://wiki.osdev.org/GCC_Cross-Compiler)

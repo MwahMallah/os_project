@@ -2,6 +2,7 @@ disk_load :
     push dx ; Store DX on stack so later we can recall
     ; how many sectors were request to be read ,
     ; even if it is altered in the meantime
+
     mov ah , 0x02 ; BIOS read sector function
     mov al , dh ; Read DH sectors
     mov ch , 0x00 ; Select cylinder 0
@@ -18,8 +19,9 @@ disk_load :
 disk_error:
     mov bx, DISK_ERROR_MSG
     call print_string
+    call print_nl
     jmp $
 ; Variables
 
-DISK_ERROR_MSG:
-db "Disk read error!", 0
+DISK_ERROR_MSG db "Disk read error!", 0
+MSG_DBG db "hello world", 0
